@@ -5,7 +5,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="w-[92%] h-screen text-white">
+        <div className="w-[92%] text-white">
             <nav className=" w-[92%] justify-between fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-[#585D65] text-white px-6 py-3 rounded-full shadow-md flex gap-6">
                 <div className="flex w-[15%] justify-evenly">
                     <img src="/src/assets/logo.png" alt="" className="w-[50px]" />

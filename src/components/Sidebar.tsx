@@ -1,7 +1,7 @@
 // src/components/HeroText.tsx
 const HeroText = () => {
   return (
-    <div className="ml-[33.33%] min-h-screen bg-[#2d2f33] text-white flex flex-col justify-center px-10">
+    <div className="ml-[49.33%] min-h-screen bg-[#2d2f33] text-white flex flex-col justify-center px-10">
       <h1 className="text-6xl font-bold leading-tight">Joé<br />Wilson</h1>
       <p className="text-teal-400 mt-4 font-semibold">CONSULTANT AND M</p>
       <p className="mt-4 text-lg max-w-lg">
