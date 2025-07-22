@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ChevronRight } from 'lucide-react';
 
 const HeroText: React.FC = () => {
     const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE ENGINEER'];
@@ -43,8 +44,8 @@ const HeroText: React.FC = () => {
                 Hello! I’m Ahsan Javaid, a Full Stack & ERPNext Developer from Pakistan.
                 I have solid experience in building web applications with Frappe, React, and Vue.js. I also work with Python and love creating custom ERP solutions that solve real business problems. I'm good at turning ideas into clean, responsive designs — and I enjoy working with APIs, dashboards, and modern tools. Let’s build something great together!
             </p>
-            <button className="mt-8 bg-transparent border rounded-full px-6 py-3 text-white font-bold hover:bg-white hover:text-black transition">
-                CONTACT ME →
+            <button className="mt-8 bg-transparent border rounded-full px-6 py-3 w-[192px] text-white font-bold hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
+                CONTACT ME <ChevronRight className="w-4 h-4" />
             </button>
         </div>
     );

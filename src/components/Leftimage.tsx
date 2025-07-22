@@ -7,3 +7,4 @@ const LeftImage = () => {
 };
 
 export default LeftImage;
+
