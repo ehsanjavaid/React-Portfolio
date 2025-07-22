@@ -6,13 +6,13 @@ const Navbar = () => {
 
     return (
         <div className="w-[92%] h-screen text-white">
-            <nav className=" overflow-hidden relative z-10 bg-[#585D65] top-0 text-white flex justify-between items-center p-[14px] mt-[30px] rounded-[100px]">
+            <nav className=" w-[92%] justify-between fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-[#585D65] text-white px-6 py-3 rounded-full shadow-md flex gap-6">
                 <div className="flex w-[15%] justify-evenly">
                     <img src="/src/assets/logo.png" alt="" className="w-[50px]" />
                     <span className="text-xl font-bold font-sans"> Ahsan <br /> Javaid</span>
                 </div>
                 {/* Desktop Menu */}
-                <div className="hidden md:flex gap-6 w-[50%] justify-around">
+                <div className="hidden md:flex gap-6 w-[50%] justify-around items-center">
                     <a href="#home" className="hover:text-teal-400 text-white">Home</a>
                     <a href="#about" className="hover:text-teal-400 text-white">About</a>
                     <a href="#projects" className="hover:text-teal-400 text-white">Projects</a>
