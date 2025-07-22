@@ -1,19 +1,53 @@
-// src/components/HeroText.tsx
-const HeroText = () => {
-  return (
-    <div className="ml-[49.33%] min-h-screen bg-[#2d2f33] text-white flex flex-col justify-center px-10">
-      <h1 className="text-6xl font-bold leading-tight">Joé<br />Wilson</h1>
-      <p className="text-teal-400 mt-4 font-semibold">CONSULTANT AND M</p>
-      <p className="mt-4 text-lg max-w-lg">
-        Hello! I am Web Developer from United States, New York. I have rich experience
-        in website design and building, also I am good at WordPress. I love to talk with
-        you about our unique.
-      </p>
-      <button className="mt-8 bg-transparent border rounded-full px-6 py-3 text-white font-bold hover:bg-white hover:text-black transition">
-        CONTACT ME →
-      </button>
-    </div>
-  );
+import React, { useState, useEffect } from "react";
+
+const HeroText: React.FC = () => {
+    const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE ENGINEER'];
+    const [textIndex, setTextIndex] = useState(0);
+    const [displayedText, setDisplayedText] = useState('');
+    const [charIndex, setCharIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        const currentText = texts[textIndex];
+
+        let timeout = setTimeout(() => {
+            if (!isDeleting) {
+                setDisplayedText(currentText.substring(0, charIndex + 1));
+                setCharIndex(charIndex + 1);
+
+                if (charIndex + 1 === currentText.length) {
+                    setIsDeleting(true);
+                }
+            } else {
+                setDisplayedText(currentText.substring(0, charIndex - 1));
+                setCharIndex(charIndex - 1);
+
+                if (charIndex === 0) {
+                    setIsDeleting(false);
+                    setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+                }
+            }
+        }, isDeleting ? 50 : 150);
+
+        return () => clearTimeout(timeout);
+    }, [charIndex, isDeleting, textIndex, texts]);
+
+    return (
+        <div className="ml-[49.33%] min-h-screen bg-[#2d2f33] text-white flex flex-col justify-center px-10">
+            <h1 className="text-6xl font-bold leading-tight">Ahsan<br />Javaid</h1>
+            <p className="text-teal-400 mt-4 font-semibold h-8">
+                {displayedText}
+                <span className="border-r-2 border-teal-400 animate-pulse ml-1"></span>
+            </p>
+            <p className="mt-4 text-lg max-w-lg">
+                Hello! I’m Ahsan Javaid, a Full Stack & ERPNext Developer from Pakistan.
+                I have solid experience in building web applications with Frappe, React, and Vue.js. I also work with Python and love creating custom ERP solutions that solve real business problems. I'm good at turning ideas into clean, responsive designs — and I enjoy working with APIs, dashboards, and modern tools. Let’s build something great together!
+            </p>
+            <button className="mt-8 bg-transparent border rounded-full px-6 py-3 text-white font-bold hover:bg-white hover:text-black transition">
+                CONTACT ME →
+            </button>
+        </div>
+    );
 };
 
 export default HeroText;

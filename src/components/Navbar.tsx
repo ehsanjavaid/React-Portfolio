@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Download } from 'lucide-react'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,11 +14,13 @@ const Navbar = () => {
                 </div>
                 {/* Desktop Menu */}
                 <div className="hidden md:flex gap-6 w-[50%] justify-around items-center">
-                    <a href="#home" className="hover:text-teal-400 text-white">Home</a>
-                    <a href="#about" className="hover:text-teal-400 text-white">About</a>
-                    <a href="#projects" className="hover:text-teal-400 text-white">Projects</a>
-                    <a href="#contact" className="hover:text-teal-400 text-white">Contact</a>
-                    <a href="#contact" className="hover:text-teal-400 text-white">Download CV</a>
+                    <a href="#home" className="hover:text-teal-400 text-white">HOME</a>
+                    <a href="#about" className="hover:text-teal-400 text-white">ABOUT</a>
+                    <a href="#projects" className="hover:text-teal-400 text-white">PROJECTS</a>
+                    <a href="#contact" className="hover:text-teal-400 text-white">CONTACT</a>
+                    <a href="#contact" className="hover:text-teal-400 text-white flex items-center gap-1">
+                        DOWNLOAD CV <Download className="w-4 h-4" />
+                    </a>
                 </div>
 
                 {/* Hamburger Icon */}
