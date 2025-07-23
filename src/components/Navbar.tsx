@@ -18,7 +18,7 @@ const Navbar = () => {
                     <a href="#about" className="hover:text-teal-400 text-white">ABOUT</a>
                     <a href="#projects" className="hover:text-teal-400 text-white">PROJECTS</a>
                     <a href="#contact" className="hover:text-teal-400 text-white">CONTACT</a>
-                    <a href="#contact" className="hover:text-teal-400 text-white flex items-center gap-1">
+                    <a href="#contact" className="hover:text-white text-white flex items-center  rounded-[40px]  gap-1 border border-white hover:border-[#5DD5C4] px-[25px] py-[16px]">
                         DOWNLOAD CV <Download className="w-4 h-4" />
                     </a>
                 </div>
@@ -31,10 +31,13 @@ const Navbar = () => {
                 {/* Mobile Menu */}
                 {isOpen && (
                     <div className="absolute top-16 left-0 w-full bg-gray-700 flex flex-col items-center gap-4 py-6 md:hidden z-50">
-                        <a href="#home" onClick={() => setIsOpen(false)}>Home</a>
-                        <a href="#about" onClick={() => setIsOpen(false)}>About</a>
-                        <a href="#projects" onClick={() => setIsOpen(false)}>Projects</a>
-                        <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
+                        <a href="#home" className="hover:text-teal-400 text-white">HOME</a>
+                    <a href="#about" className="hover:text-teal-400 text-white">ABOUT</a>
+                    <a href="#projects" className="hover:text-teal-400 text-white">PROJECTS</a>
+                    <a href="#contact" className="hover:text-teal-400 text-white">CONTACT</a>
+                    <a href="#contact" className="hover:text-white text-white flex items-center  rounded-[40px]  gap-1 border border-white hover:border-[#5DD5C4] px-[25px] py-[16px]">
+                        DOWNLOAD CV <Download className="w-4 h-4" />
+                    </a>
                     </div>
                 )}
             </nav>
