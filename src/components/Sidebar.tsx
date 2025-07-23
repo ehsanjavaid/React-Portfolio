@@ -34,19 +34,23 @@ const HeroText: React.FC = () => {
     }, [charIndex, isDeleting, textIndex, texts]);
 
     return (
-        <div className="ml-[49.33%] min-h-screen bg-[#2d2f33] text-white flex flex-col justify-center px-10">
-            <h1 className="text-6xl font-bold leading-tight">Ahsan<br />Javaid</h1>
+        <div className="pt-[130px] ml-[49.33%] bg-[#373b40] text-white flex flex-col justify-center px-10">
+            <h1 className="text-6xl font-bold leading-tight mt-[40px] ml-[-12vw] relative bg-[#373b40] p-[4.2vw] text-[4.2vw] rounded-[264px] ">Ahsan<br />Javaid</h1>
             <p className="text-teal-400 mt-4 font-semibold h-8">
                 {displayedText}
                 <span className="border-r-2 border-teal-400 animate-pulse ml-1"></span>
             </p>
-            <p className="mt-4 text-lg max-w-lg">
+            <p className="mt-4 text-[14px] max-w-lg">
                 Hello! I’m Ahsan Javaid, a Full Stack & ERPNext Developer from Pakistan.
-                I have solid experience in building web applications with Frappe, React, and Vue.js. I also work with Python and love creating custom ERP solutions that solve real business problems. I'm good at turning ideas into clean, responsive designs — and I enjoy working with APIs, dashboards, and modern tools. Let’s build something great together!
+                I specialize in building web apps with Frappe, React, Vue.js, and Python.
+                I love crafting clean, responsive UIs and custom ERP solutions that solve real problems. I love to talk with you about our unique.
             </p>
-            <button className="group mt-8 bg-transparent border rounded-full px-[25px] py-[25px] w-[192px] border-[#52575E]  text-white font-bold hover:border-[#5DD5C4] transition flex items-center justify-center gap-2">
+            <button className="group mt-8 bold bg-transparent border rounded-full px-[25px] py-[25px] w-[192px] border-[#52575E] text-[12px] text-white font-bold hover:border-[#5DD5C4] transition flex items-center justify-center gap-2">
                 CONTACT ME <ChevronRight className="w-4 h-4 group-hover:text-[#5DD5C4] transition-transform duration-300 group-hover:translate-x-1" />
             </button>
+            <div className="w-full flex justify-center">
+                <hr className="my-10 w-[100%] border-t border-gray-600" />
+            </div>
         </div>
     );
 };

@@ -6,7 +6,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="w-[92%] text-white">
+        <div className="w-[92%] text-white bg-[#585D65]">
             <nav className=" w-[92%] justify-between fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-[#585D65] text-white px-6 py-3 rounded-full shadow-md flex gap-6">
                 <div className="flex w-[15%] justify-evenly">
                     <img src="/logo.png" alt="" className="w-[50px]" />
@@ -18,8 +18,8 @@ const Navbar = () => {
                     <a href="#about" className="hover:text-teal-400 text-white">ABOUT</a>
                     <a href="#projects" className="hover:text-teal-400 text-white">PROJECTS</a>
                     <a href="#contact" className="hover:text-teal-400 text-white">CONTACT</a>
-                    <a href="#contact" className="hover:text-white text-white flex items-center  rounded-[40px]  gap-1 border border-white hover:border-[#5DD5C4] px-[25px] py-[16px]">
-                        DOWNLOAD CV <Download className="w-4 h-4" />
+                    <a href="#contact" className="hover:text-white group text-white flex items-center  rounded-[40px]  gap-1 border border-white hover:border-[#5DD5C4] px-[25px] py-[16px]">
+                        DOWNLOAD CV <Download className="w-4 h-4 group-hover:text-[#5DD5C4]" />
                     </a>
                 </div>
 
@@ -41,6 +41,7 @@ const Navbar = () => {
                     </div>
                 )}
             </nav>
+           
         </div>
     );
 };
