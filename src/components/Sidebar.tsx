@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronRight } from 'lucide-react';
 
 const HeroText: React.FC = () => {
-    const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE ENGINEER'];
+    const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE DEVELOPER'];
     const [textIndex, setTextIndex] = useState(0);
     const [displayedText, setDisplayedText] = useState('');
     const [charIndex, setCharIndex] = useState(0);
@@ -51,6 +51,7 @@ const HeroText: React.FC = () => {
             <div className="w-full flex justify-center">
                 <hr className="my-10 w-[100%] border-t border-gray-600" />
             </div>
+
         </div>
     );
 };

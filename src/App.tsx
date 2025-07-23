@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import LeftImage from './components/Leftimage';
 import Sidebar from './components/Sidebar'
+import Righticons from './components/Righticons'
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <LeftImage />
       <Navbar />
       <Sidebar />
+      <Righticons />
     </div>
   );
 }
