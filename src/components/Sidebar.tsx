@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ChevronRight, Globe, Cpu, Server, Settings } from 'lucide-react';
+import { ChevronRight, Globe, FolderCode, Boxes, Settings } from 'lucide-react';
+import Pricingplan from "./Pricingplan";
 
 const HeroText: React.FC = () => {
     const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE DEVELOPER'];
@@ -7,6 +8,7 @@ const HeroText: React.FC = () => {
     const [displayedText, setDisplayedText] = useState('');
     const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+    
 
     useEffect(() => {
         const currentText = texts[textIndex];
@@ -116,31 +118,33 @@ const HeroText: React.FC = () => {
             <div className="flex flex-col">
                 <div className="title text-[55px] text-white font-bold font-montserrat">Services </div>
                 <div className="subtitle text-[14px] text-[#68e0cf] font-bold font-poppins">WHAT I DO </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-[20px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-[20px] font-poppins">
                     {/* Service 1 */}
+                    <div className="flex flex-col items-start p-4 rounded-lg dark:bg-gray-900">
+                        <Boxes className="w-8 h-8 text-[#68e0cf] mb-2" />
+                        <h3 className="text-[18px] mb-[20px] font-bold">ERPNext / <br /> Frappe</h3>
+                        <p className="text-[14px] text-white dark:text-gray-400">
+                            Custom ERP apps, reports, and automations using Frappe Framework and Python.
+                            Deep experience in ERPNext customization and integration.
+                        </p>
+                    </div>
+                    {/* Service 2 */}
                     <div className="flex flex-col items-start p-4 rounded-lg dark:bg-gray-900">
                         <Globe className="w-8 h-8 mb-2 text-[32px] text-[#68e0cf]" />
                         <h3 className=" font-bold mb-[20px] text-[18px]">Web <br /> Development</h3>
                         <p className="text-[14px]  text-white dark:text-gray-400">
-                            Building responsive and modern websites using the latest technologies.
-                        </p>
-                    </div>
-
-                    {/* Service 2 */}
-                    <div className="flex flex-col items-start p-4 rounded-lg dark:bg-gray-900">
-                        <Cpu className="w-8 h-8 text-[#68e0cf] mb-2" />
-                        <h3 className="text-[18px] mb-[20px] font-bold">Software <br /> Development</h3>
-                        <p className="text-[14px] text-white dark:text-gray-400">
-                            Custom software solutions tailored to your business needs.
+                            Crafting responsive websites using React, Vue.js, and Tailwind CSS.
+                            Focused on performance, SEO, and clean UI/UX experiences.
                         </p>
                     </div>
 
                     {/* Service 3 */}
                     <div className="flex flex-col items-start p-4 rounded-lg dark:bg-gray-900">
-                        <Server className="w-8 h-8 text-[#68e0cf] mb-2" />
-                        <h3 className="text-[18px] mb-[20px] font-bold">ERPNext / <br /> Frappe</h3>
+                        <FolderCode className="w-8 h-8 text-[#68e0cf] mb-2" />
+                        <h3 className="text-[18px] mb-[20px] font-bold">Software <br /> Development</h3>
                         <p className="text-[14px] text-white dark:text-gray-400">
-                            Implementation, customization, and support of ERPNext and Frappe apps.
+                            Developing scalable applications with Python, JavaScript, and modern frameworks.
+                            From automation tools to full-stack business software.
                         </p>
                     </div>
 
@@ -149,14 +153,18 @@ const HeroText: React.FC = () => {
                         <Settings className="w-8 h-8 text-[#68e0cf] mb-2" />
                         <h3 className="text-[18px] mb-[20px] font-bold">Technical <br /> Services</h3>
                         <p className="text-[14px] text-white dark:text-gray-400">
-                            Deployment, automation, and infrastructure management support.
+                            Providing support for server deployment, Linux, and API integrations.
+                            Skilled with, Nginx, MariaDB, and cloud environments.
                         </p>
                     </div>
                 </div>
-
-
             </div>
-
+            {/* line 3 */}
+            <div className="w-full flex justify-center pt-[70px]">
+                <hr className="my-10 w-[100%] border-t border-gray-600" />
+            </div>
+            {/* Pricing */}
+            <Pricingplan />
         </div>
     );
 };
