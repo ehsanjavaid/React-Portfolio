@@ -33,62 +33,77 @@ const HeroText: React.FC = () => {
         return () => clearTimeout(timeout);
     }, [charIndex, isDeleting, textIndex, texts]);
 
+
+
     return (
         <div className=" pt-[130px] ml-[49.30%] bg-[#373b40] text-white flex flex-col justify-center px-[40px] flex-1">
-            <h1 className="text-6xl font-bold leading-tight mt-[40px] ml-[-16vw] relative bg-[#373b40] p-[4.2vw] text-[4.2vw] rounded-[264px] ">Ahsan<br />Javaid</h1>
-            <p className="text-teal-400 mt-4 font-semibold h-8">
+            <h1 className="text-6xl font-bold leading-tight mt-[40px] ml-[-16vw] relative bg-[#373b40] p-[4.2vw] text-[4.2vw] rounded-[264px] font-montserrat">Ahsan<br />Javaid</h1>
+            <p className="text-teal-400 mt-4 font-semibold h-8 font-poppins">
                 {displayedText}
                 <span className="border-r-2 border-teal-400 animate-pulse ml-1"></span>
             </p>
-            <p className="mt-4 text-[14px] max-w-lg">
+            <p className="mt-4 text-[14px] max-w-lg font-poppins">
                 Hello! I’m Ahsan Javaid, a Full Stack & ERPNext Developer from Pakistan.
                 I specialize in building web apps with Frappe, React, Vue.js, and Python.
                 I love crafting clean, responsive UIs and custom ERP solutions that solve real problems. I love to talk with you about our unique.
             </p>
-            <button className="group mt-8 bold bg-transparent border rounded-full px-[25px] py-[25px] w-[192px] border-[#52575E] text-[12px] text-white font-bold hover:border-[#5DD5C4] transition flex items-center justify-center gap-2">
+            <button className="font-poppins group mt-8 bold bg-transparent border rounded-full px-[25px] py-[25px] w-[192px] border-[#52575E] text-[12px] text-white font-bold hover:border-[#5DD5C4] transition flex items-center justify-center gap-2">
                 CONTACT ME <ChevronRight className="w-4 h-4 group-hover:text-[#5DD5C4] transition-transform duration-300 group-hover:translate-x-1" />
             </button>
             <div className="w-full flex justify-center">
                 <hr className="my-10 w-[100%] border-t border-gray-600" />
             </div>
             <div className="flex flex-col titles">
-                <div className="title text-[55px] text-white font-bold">About Me </div>
-                <div className="subtitle text-[14px] text-[#68e0cf] font-bold">MY STORY </div>
-                <div className="flex flex-row mt-[30px] justify-between  w-full mb-[30px]">
+                <div className="title text-[55px] text-white font-bold font-montserrat">About Me </div>
+                <div className="subtitle text-[14px] text-[#68e0cf] font-bold font-poppins">MY STORY </div>
+                <div className="flex flex-row mt-[30px] justify-between  w-full mb-[30px] font-poppins">
                     <div className="pr-[20px] text-[14px] w-[50%]">I'm Ahsan Javaid, a dedicated Full Stack
                         & ERPNext Developer based in Pakistan. With hands-on experience in Frappe and ERPNext,
                         I specialize in crafting efficient, user-friendly business applications
                         that automate workflows and solve real-world problems.
                     </div>
-                    <div className="px-[20px] text-[14px] w-[50%]">I’m also proficient in modern web development using React,
+                    <div className="px-[20px] text-[14px] w-[50%] ">I’m also proficient in modern web development using React,
                         Vue.js, and Python. I enjoy creating clean interfaces, working with APIs,
                         and building responsive dashboards that help users make smarter decisions.
                     </div>
                 </div>
-                <div className="pr-[20px] flex pt-[10px] text-[14px]">Beyond coding, I’m passionate about innovation and meaningful problem-solving.
+                <div className="pr-[20px] flex pt-[10px] text-[14px] font-poppins">Beyond coding, I’m passionate about innovation and meaningful problem-solving.
                     Whether it’s building custom ERP modules or contributing to full-stack projects,
                     I take pride in delivering polished solutions that add real value. I'm always open to new challenges and excited to collaborate with forward-thinking teams.
 
                 </div>
-                <div className="flex flex-col"></div>
-                <div className="flex flex-row">
-                    <div className="flex flex-row">
-                        <div>Age:</div>
-                        <div>24</div>
+                <div className="flex flex-row gap-[15rem] mt-[40px] text-sm font-poppins">
+                    <div className="flex flex-col gap-3">
+                        <div className="flex flex-row gap-2  text-[14px]">
+                            <span className="font-semibold text-[#68e0cf]">AGE:</span>
+                            <span className="text-white">25</span>
+                        </div>
+                        <div className="flex flex-row gap-2  text-[14px]">
+                            <span className="font-semibold text-[#68e0cf]">FREELANCE:</span>
+                            <span className="text-white">Available</span>
+                        </div>
+                        <div className="flex flex-row gap-2  text-[14px]">
+                            <span className="font-semibold text-[#68e0cf]">PHONE:</span>
+                            <span className="text-white">+923138619329</span>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                        <div className="flex flex-row gap-2  text-[14px]">
+                            <span className="font-semibold text-[#68e0cf]">RESIDENCE:</span>
+                            <span className="text-white">PAKISTAN</span>
+                        </div>
+                        <div className="flex flex-row gap-2  text-[14px]">
+                            <span className="font-semibold text-[#68e0cf]">ADDRESS:</span>
+                            <span className="text-white">Lahore</span>
+                        </div>
+                        <div className="flex flex-row gap-2  text-[14px]">
+                            <span className="font-semibold text-[#68e0cf]">EMAIL:</span>
+                            <span className="text-white">ehsanjavaid321@gmail.com</span>
+                        </div>
                     </div>
                 </div>
-                <div className="flex flex-row">
-                    <div className="flex flex-row">
-                        <div>Age:</div>
-                        <div>24</div>
-                    </div>
-                </div>
-                <div className="flex flex-row">
-                    <div className="flex flex-row">
-                        <div>Age:</div>
-                        <div>24</div>
-                    </div>
-                </div>
+
             </div>
 
         </div>
