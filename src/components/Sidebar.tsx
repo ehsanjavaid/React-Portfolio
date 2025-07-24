@@ -70,6 +70,25 @@ const HeroText: React.FC = () => {
                     I take pride in delivering polished solutions that add real value. I'm always open to new challenges and excited to collaborate with forward-thinking teams.
 
                 </div>
+                <div className="flex flex-col"></div>
+                <div className="flex flex-row">
+                    <div className="flex flex-row">
+                        <div>Age:</div>
+                        <div>24</div>
+                    </div>
+                </div>
+                <div className="flex flex-row">
+                    <div className="flex flex-row">
+                        <div>Age:</div>
+                        <div>24</div>
+                    </div>
+                </div>
+                <div className="flex flex-row">
+                    <div className="flex flex-row">
+                        <div>Age:</div>
+                        <div>24</div>
+                    </div>
+                </div>
             </div>
 
         </div>
