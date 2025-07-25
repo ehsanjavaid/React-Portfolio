@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { ChevronRight, ChevronLeft, Star, Gem, Rocket } from "lucide-react";
 
@@ -7,7 +7,6 @@ interface PricingPlan {
     price: string;
     services: string[];
     icon: ReactNode;
-
 }
 
 const pricingPlans: PricingPlan[] = [
@@ -25,7 +24,6 @@ const pricingPlans: PricingPlan[] = [
             "WhatsApp ChatBot Integration",
             "AI-Powered Dashboards",
         ],
-
         icon: <Star className="text-teal-400 w-8 h-8 mx-auto mb-2" />,
     },
     {
@@ -42,7 +40,6 @@ const pricingPlans: PricingPlan[] = [
             "WhatsApp ChatBot Integration",
             "AI-Powered Dashboards (Basic)",
         ],
-
         icon: <Gem className="text-teal-400 w-8 h-8 mx-auto mb-2" />,
     },
     {
@@ -59,23 +56,69 @@ const pricingPlans: PricingPlan[] = [
             "WhatsApp + Biometric Integration",
             "AI Dashboards + VPS Deployment",
         ],
-
         icon: <Rocket className="text-teal-400 w-8 h-8 mx-auto mb-2" />
     },
 ];
 
 export default function Pricing() {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-    const scroll = (direction: "left" | "right") => {
-        if (scrollRef.current) {
-            if (direction === "left") scrollRef.current.scrollLeft -= 321;
-            else scrollRef.current.scrollLeft += 321;
-        }
+    // Create infinite loop by duplicating plans
+    const extendedPlans = [...pricingPlans, pricingPlans[0]]; // Add first plan at the end
+
+    const scrollToPlan = (index: number) => {
+        if (!scrollRef.current || isAnimating) return;
+
+        setIsAnimating(true);
+        const scrollPosition = index * 321; // 297px width + 24px gap
+        scrollRef.current.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+
+        // Update current index after animation
+        setTimeout(() => {
+            setCurrentIndex(index);
+            setIsAnimating(false);
+        }, 300);
     };
 
+    const scroll = (direction: "left" | "right") => {
+        if (isAnimating) return;
+
+        let newIndex = currentIndex;
+        if (direction === "right") {
+            newIndex = (currentIndex + 1) % extendedPlans.length;
+        } else {
+            newIndex = currentIndex === 0 ? extendedPlans.length - 1 : currentIndex - 1;
+        }
+
+        scrollToPlan(newIndex);
+    };
+
+    // Handle infinite loop illusion
+    useEffect(() => {
+        if (!scrollRef.current) return;
+
+        const handleScrollEnd = () => {
+            if (currentIndex === extendedPlans.length - 1) {
+                // Jump to first real item without animation
+                setCurrentIndex(0);
+                if (scrollRef.current) {
+                    scrollRef.current.scrollLeft = 0;
+                }
+            }
+        };
+
+        const container = scrollRef.current;
+        container.addEventListener('scroll', handleScrollEnd);
+        return () => container.removeEventListener('scroll', handleScrollEnd);
+    }, [currentIndex, extendedPlans.length]);
+
     return (
-        <section className=" text-white py-12">
+        <section className="text-white py-12">
             <div className="flex flex-row items-center justify-between mb-6 w-[92%]">
                 <div className="text-[42px] md:text-[55px] text-white font-bold font-montserrat">
                     Pricing
@@ -83,47 +126,58 @@ export default function Pricing() {
                 <div className="flex space-x-3 text-center">
                     <button
                         onClick={() => scroll("left")}
-                        className=" bg-[#373b40] px-[22px] hover:none text-white rounded-full border border-[#414852] text-[14px] w-[64px] h-[64px] mr-[15px]"
+                        className="bg-[#373b40] px-[22px] hover:none text-white rounded-full border border-[#414852] text-[14px] w-[64px] h-[64px] mr-[15px]"
                     >
                         <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
                         onClick={() => scroll("right")}
-                        className=" text-white px-[22px] rounded-full bg-[#373b40] border hover:no-underline border-[#414852] text-[14px]  w-[64px] h-[64px]"
+                        className="text-white px-[22px] rounded-full bg-[#373b40] border hover:no-underline border-[#414852] text-[14px] w-[64px] h-[64px]"
                     >
                         <ChevronRight className="w-4 h-4" />
                     </button>
                 </div>
             </div>
 
-            <div className="subtitle text-[14px] text-[#68e0cf] font-bold font-poppins">MY PLANS </div>
+            <div className="subtitle text-[14px] text-[#68e0cf] font-bold font-poppins">MY PLANS</div>
 
             <div className="relative px-6">
                 <div
                     ref={scrollRef}
-                    className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
+                    className="flex space-x-6 overflow-x-hidden scrollbar-hide"
                     style={{ width: '627px' }}
                 >
-                    {pricingPlans.map((plan, index) => (
+                    {extendedPlans.map((plan, index) => (
                         <div
                             key={index}
-                            className=" min-w-[297px] max-w-[297px] p-6 rounded-2xl text-center item-center flex-shrink-0"
+                            className="min-w-[297px] max-w-[297px] p-6 rounded-2xl text-center item-center flex-shrink-0"
                         >
                             <div className="text-teal-400 text-3xl mb-2">{plan.icon}</div>
-                            <h3 className=" font-bold mb-2 text-[18px]">{plan.name}</h3>
+                            <h3 className="font-bold mb-2 text-[18px]">{plan.name}</h3>
                             <p className="text-[54px] font-bold mb-4">
-                                ${plan.price}{" "}
-                                {/* <span className="text-[14px] font-light text-gray-400">/hour</span> */}
+                                ${plan.price}
                             </p>
-                            <ul className="space-y-2 mb-4">
+                            <ul className="mb-4 font-poppins">
                                 {plan.services.map((service, i) => {
                                     const shouldStrike =
-                                        plan.name === "Basic" && (service === "ERPNext Custom App Development" || service === "Vue/React Dashboard Integration" || service === "WhatsApp ChatBot Integration" || service === "AI-Powered Dashboards");
+                                        plan.name === "Basic" &&
+                                        [
+                                            "ERPNext Custom App Development",
+                                            "Vue/React Dashboard Integration",
+                                            "WhatsApp ChatBot Integration",
+                                            "AI-Powered Dashboards",
+                                        ].includes(service);
 
                                     return (
                                         <li
                                             key={i}
-                                            className={`text-sm ${shouldStrike ? "line-through text-gray-500" : ""}`}
+                                            className={`text-sm ${shouldStrike ? "line-through text-gray-500 font-poppins" : ""}`}
+                                            style={{
+                                                lineHeight: '26px',
+                                                marginBottom: '12px',
+                                                paddingTop: '2px',
+                                                paddingBottom: '2px',
+                                            }}
                                         >
                                             {service}
                                             {!shouldStrike && service === "Photography" && (
