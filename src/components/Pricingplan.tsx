@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import { ChevronRight, ChevronLeft, Star, Gem, Rocket } from "lucide-react";
+import type { ReactNode } from "react";
 
 interface PricingPlan {
     name: string;
@@ -56,66 +56,48 @@ const pricingPlans: PricingPlan[] = [
             "WhatsApp + Biometric Integration",
             "AI Dashboards + VPS Deployment",
         ],
-        icon: <Rocket className="text-teal-400 w-8 h-8 mx-auto mb-2" />
+        icon: <Rocket className="text-teal-400 w-8 h-8 mx-auto mb-2" />,
     },
 ];
 
+const CARD_WIDTH = 321; // 297 + gap
+
 export default function Pricing() {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
 
-    // Create infinite loop by duplicating plans
-    const extendedPlans = [...pricingPlans, pricingPlans[0]]; // Add first plan at the end
+    const extendedPlans = [...pricingPlans, ...pricingPlans, ...pricingPlans]; // 3x copy
+    const startIndex = pricingPlans.length; // middle copy index
 
-    const scrollToPlan = (index: number) => {
-        if (!scrollRef.current || isAnimating) return;
-
-        setIsAnimating(true);
-        const scrollPosition = index * 321; // 297px width + 24px gap
-        scrollRef.current.scrollTo({
-            left: scrollPosition,
-            behavior: 'smooth'
-        });
-
-        // Update current index after animation
-        setTimeout(() => {
-            setCurrentIndex(index);
-            setIsAnimating(false);
-        }, 300);
-    };
+    useEffect(() => {
+        // Scroll to the middle copy on load
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft = startIndex * CARD_WIDTH;
+        }
+    }, []);
 
     const scroll = (direction: "left" | "right") => {
-        if (isAnimating) return;
-
-        let newIndex = currentIndex;
-        if (direction === "right") {
-            newIndex = (currentIndex + 1) % extendedPlans.length;
-        } else {
-            newIndex = currentIndex === 0 ? extendedPlans.length - 1 : currentIndex - 1;
-        }
-
-        scrollToPlan(newIndex);
-    };
-
-    // Handle infinite loop illusion
-    useEffect(() => {
         if (!scrollRef.current) return;
-
-        const handleScrollEnd = () => {
-            if (currentIndex === extendedPlans.length - 1) {
-                // Jump to first real item without animation
-                setCurrentIndex(0);
-                if (scrollRef.current) {
-                    scrollRef.current.scrollLeft = 0;
-                }
-            }
-        };
-
         const container = scrollRef.current;
-        container.addEventListener('scroll', handleScrollEnd);
-        return () => container.removeEventListener('scroll', handleScrollEnd);
-    }, [currentIndex, extendedPlans.length]);
+
+        const scrollAmount = direction === "left" ? -CARD_WIDTH : CARD_WIDTH;
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+
+        setTimeout(() => {
+            const max = pricingPlans.length * CARD_WIDTH * 2;
+            const min = 0;
+            const current = container.scrollLeft;
+
+            // If scrolled too far right, reset to center
+            if (current >= max) {
+                container.scrollLeft = startIndex * CARD_WIDTH;
+            }
+
+            // If scrolled too far left, reset to center
+            if (current <= min) {
+                container.scrollLeft = startIndex * CARD_WIDTH;
+            }
+        }, 500); // Wait for smooth scroll to finish
+    };
 
     return (
         <section className="text-white py-12">
@@ -126,13 +108,15 @@ export default function Pricing() {
                 <div className="flex space-x-3 text-center">
                     <button
                         onClick={() => scroll("left")}
-                        className="bg-[#373b40] px-[22px] hover:none text-white rounded-full border border-[#414852] text-[14px] w-[64px] h-[64px] mr-[15px]"
+                        aria-label="Scroll Left"
+                        className="bg-[#373b40] px-[22px] text-white rounded-full border border-[#414852] text-[14px] w-[64px] h-[64px] mr-[15px]"
                     >
                         <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
                         onClick={() => scroll("right")}
-                        className="text-white px-[22px] rounded-full bg-[#373b40] border hover:no-underline border-[#414852] text-[14px] w-[64px] h-[64px]"
+                        aria-label="Scroll Right"
+                        className="text-white px-[22px] rounded-full bg-[#373b40] border border-[#414852] text-[14px] w-[64px] h-[64px]"
                     >
                         <ChevronRight className="w-4 h-4" />
                     </button>
@@ -144,19 +128,17 @@ export default function Pricing() {
             <div className="relative px-6">
                 <div
                     ref={scrollRef}
-                    className="flex space-x-6 overflow-x-hidden scrollbar-hide"
-                    style={{ width: '627px' }}
+                    className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
+                    style={{ width: "627px" }}
                 >
                     {extendedPlans.map((plan, index) => (
                         <div
                             key={index}
-                            className="min-w-[297px] max-w-[297px] p-6 rounded-2xl text-center item-center flex-shrink-0"
+                            className="min-w-[297px] max-w-[297px] p-6 rounded-2xl text-center flex-shrink-0"
                         >
                             <div className="text-teal-400 text-3xl mb-2">{plan.icon}</div>
                             <h3 className="font-bold mb-2 text-[18px]">{plan.name}</h3>
-                            <p className="text-[54px] font-bold mb-4">
-                                ${plan.price}
-                            </p>
+                            <p className="text-[54px] font-bold mb-4">${plan.price}</p>
                             <ul className="mb-4 font-poppins">
                                 {plan.services.map((service, i) => {
                                     const shouldStrike =
@@ -171,25 +153,14 @@ export default function Pricing() {
                                     return (
                                         <li
                                             key={i}
-                                            className={`text-sm ${shouldStrike ? "line-through text-gray-500 font-poppins" : ""}`}
-                                            style={{
-                                                lineHeight: '26px',
-                                                marginBottom: '12px',
-                                                paddingTop: '2px',
-                                                paddingBottom: '2px',
-                                            }}
+                                            className={`text-sm leading-[26px] mb-[12px] py-[2px] ${shouldStrike ? "line-through text-gray-500" : ""
+                                                }`}
                                         >
                                             {service}
-                                            {!shouldStrike && service === "Photography" && (
-                                                <span className="ml-2 px-2 py-0.5 text-xs bg-teal-500 text-black rounded-full">
-                                                    new
-                                                </span>
-                                            )}
                                         </li>
                                     );
                                 })}
                             </ul>
-
                             <button className="font-poppins group mt-8 bold bg-transparent border rounded-full px-[25px] py-[25px] w-[143px] ml-[53px] border-[#52575E] text-[12px] text-white font-bold hover:border-[#5DD5C4] transition flex items-center justify-center gap-2">
                                 BUY NOW <ChevronRight className="w-4 h-4 group-hover:text-[#5DD5C4] transition-transform duration-300 group-hover:translate-x-1" />
                             </button>
