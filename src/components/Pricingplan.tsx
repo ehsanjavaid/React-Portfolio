@@ -1,45 +1,66 @@
 import { useRef } from "react";
 import type { ReactNode } from "react";
-import { ChevronRight, ChevronLeft, Star, Gem,Rocket } from "lucide-react";
+import { ChevronRight, ChevronLeft, Star, Gem, Rocket } from "lucide-react";
 
 interface PricingPlan {
     name: string;
     price: string;
     services: string[];
     icon: ReactNode;
-    
+
 }
 
 const pricingPlans: PricingPlan[] = [
     {
         name: "Basic",
-        price: "29",
-        services: ["Web Development", "Advertising"],
-        icon: <Star className = "text-teal-400 w-8 h-8 mx-auto mb-2" />,
+        price: "49",
+        services: [
+            "Static Website (1–2 pages)",
+            "Basic ERPNext Setup",
+            "Custom Print Format (1)",
+            "Bug Fixing / Small Customization",
+            "Database Backup",
+            "ERPNext Custom App Development",
+            "Vue/React Dashboard Integration",
+            "WhatsApp ChatBot Integration",
+            "AI-Powered Dashboards",
+        ],
+
+        icon: <Star className="text-teal-400 w-8 h-8 mx-auto mb-2" />,
     },
     {
         name: "Premium",
-        price: "59",
+        price: "149",
         services: [
-            "Web Development",
-            "Advertising",
-            "Game Development",
-            "Music Writing",
-            "Photography",
+            "Static Website (3–5 pages)",
+            "ERPNext Setup + Customization",
+            "Multiple Print Formats (up to 3)",
+            "Backend CRUD APIs (Frappe + Vue)",
+            "Database Backup & Optimization",
+            "ERPNext Custom App Development",
+            "Vue/React Dashboard Integration",
+            "WhatsApp ChatBot Integration",
+            "AI-Powered Dashboards (Basic)",
         ],
-        icon: <Gem className = "text-teal-400 w-8 h-8 mx-auto mb-2" />,
+
+        icon: <Gem className="text-teal-400 w-8 h-8 mx-auto mb-2" />,
     },
     {
         name: "Ultimate",
-        price: "59",
+        price: "299",
         services: [
-            "Web Development",
-            "Advertising",
-            "Game Development",
-            "Music Writing",
-            "Photography",
+            "Full-Stack Web App (React + API)",
+            "Complete ERPNext Solution",
+            "Unlimited Print Formats & Reports",
+            "Advanced API Integrations",
+            "Database Optimization & Auto Backup",
+            "Custom ERP App Development",
+            "Vue/React Dashboards (with Charts)",
+            "WhatsApp + Biometric Integration",
+            "AI Dashboards + VPS Deployment",
         ],
-        icon: <Rocket className = "text-teal-400 w-8 h-8 mx-auto mb-2" />
+
+        icon: <Rocket className="text-teal-400 w-8 h-8 mx-auto mb-2" />
     },
 ];
 
@@ -88,24 +109,33 @@ export default function Pricing() {
                             key={index}
                             className=" min-w-[297px] max-w-[297px] p-6 rounded-2xl text-center item-center flex-shrink-0"
                         >
-                            <div className="text-teal-400 text-3xl mb-2">{ plan.icon }</div>
+                            <div className="text-teal-400 text-3xl mb-2">{plan.icon}</div>
                             <h3 className=" font-bold mb-2 text-[18px]">{plan.name}</h3>
                             <p className="text-[54px] font-bold mb-4">
                                 ${plan.price}{" "}
-                                <span className="text-[14px] font-light text-gray-400">/hour</span>
+                                {/* <span className="text-[14px] font-light text-gray-400">/hour</span> */}
                             </p>
                             <ul className="space-y-2 mb-4">
-                                {plan.services.map((service, i) => (
-                                    <li key={i} className="text-sm">
-                                        {service}
-                                        {service === "Photography" && (
-                                            <span className="ml-2 px-2 py-0.5 text-xs bg-teal-500 text-black rounded-full">
-                                                new
-                                            </span>
-                                        )}
-                                    </li>
-                                ))}
+                                {plan.services.map((service, i) => {
+                                    const shouldStrike =
+                                        plan.name === "Basic" && (service === "ERPNext Custom App Development" || service === "Vue/React Dashboard Integration" || service === "WhatsApp ChatBot Integration" || service === "AI-Powered Dashboards");
+
+                                    return (
+                                        <li
+                                            key={i}
+                                            className={`text-sm ${shouldStrike ? "line-through text-gray-500" : ""}`}
+                                        >
+                                            {service}
+                                            {!shouldStrike && service === "Photography" && (
+                                                <span className="ml-2 px-2 py-0.5 text-xs bg-teal-500 text-black rounded-full">
+                                                    new
+                                                </span>
+                                            )}
+                                        </li>
+                                    );
+                                })}
                             </ul>
+
                             <button className="font-poppins group mt-8 bold bg-transparent border rounded-full px-[25px] py-[25px] w-[143px] ml-[53px] border-[#52575E] text-[12px] text-white font-bold hover:border-[#5DD5C4] transition flex items-center justify-center gap-2">
                                 BUY NOW <ChevronRight className="w-4 h-4 group-hover:text-[#5DD5C4] transition-transform duration-300 group-hover:translate-x-1" />
                             </button>
