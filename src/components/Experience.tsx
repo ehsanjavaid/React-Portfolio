@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ChevronRight, ChevronLeft, Star, Gem, Rocket } from "lucide-react";
-import type { ReactNode } from "react";
+import { ChevronRight, ChevronLeft} from "lucide-react";
 interface Experience {
     title: string;
     period: string;
