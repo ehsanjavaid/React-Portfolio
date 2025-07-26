@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronRight, Globe, FolderCode, Boxes, Settings } from 'lucide-react';
 import Pricingplan from "./Pricingplan";
+import Experience from "./Experience";
 
 const HeroText: React.FC = () => {
     const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE DEVELOPER'];
@@ -165,6 +166,13 @@ const HeroText: React.FC = () => {
             </div>
             {/* Pricing */}
             <Pricingplan />
+            {/* line 4 */}
+            <div className="w-full flex justify-center pt-[70px]">
+                <hr className="my-10 w-[100%] border-t border-gray-600" />
+            </div>
+            {/* <!-- Experience Section --> */}
+            <Experience />
+
         </div>
     );
 };
