@@ -19,7 +19,7 @@ Acknowledgements
 🔍 Overview
 A sleek, animated portfolio showcasing my work in Frappe, web development, and design. It highlights my skills, projects, and professional experience in a modern and responsive layout.
 Portfolio Picture
-(./public/image.png)
+![alt text](image.png)
 🛠️ Built With
 React
 
