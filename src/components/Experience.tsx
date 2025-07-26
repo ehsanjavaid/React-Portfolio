@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { ChevronRight, ChevronLeft} from "lucide-react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+
 interface Experience {
     title: string;
     period: string;
@@ -7,103 +8,122 @@ interface Experience {
 }
 
 const experiences: Experience[] = [
+    
     {
-        title: "Art Director at Facebook",
-        period: "2010 – 2012",
-        description: "Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
-    },
-    {
-        title: "The Turin Olympics",
+        title: "Frappe / ERPNext Developer at Infintrix Technologies",
         period: "Present",
-        description: "Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
+        description:
+            "Developing and customizing ERPNext applications using Frappe framework. Collaborating with cross-functional teams to gather requirements and deliver solutions. Implementing new features, bug fixes, and performance optimizations. Participating in code reviews and maintaining high code quality standards.",
     },
+    {
+        title: "Junior ERPNext Developer at Firm11",
+        period: "2023 – 2024",
+        description:
+            "Assisted in the development and customization of ERPNext applications. Collaborated with senior developers to implement new features and resolve bugs. Participated in code reviews and contributed to team knowledge sharing. Gained experience in Frappe framework and ERPNext modules.",
+    },
+     {
+        title: "Frontend Developer at Techsa",
+        period: "2022 – 2024",
+        description:
+            "Developed and maintained responsive web applications using React.js, and Tailwind Css. Collaborated with backend developers to integrate RESTful APIs. Implemented state management using Redux and Context API. Optimized application performance and ensured cross-browser compatibility.",
+    },
+    {
+        title: "Graphic Designer at Protech Automotive Glass Industries",
+        period: "2020 – 2022",
+        description:
+            "Designed automotive windscreen layouts using AutoCAD and CorelDRAW for precision manufacturing.Collaborated with engineers to ensure accurate templates and high-quality production output.",
+
+    },
+   
+    
+    
+    
 ];
-const CARD_WIDTH = 321;
+
+const CARD_WIDTH = 320 + 24; // card + gap (if gap-6 = 24px)
 
 export default function ExperienceSection() {
-    const scrollRef = useRef<HTMLDivElement>(null)
-    const extendedPlans = [...experiences, ...experiences, ...experiences];
-    const startIndex = experiences.length
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const extendedExperiences = [...experiences, ...experiences]; // 2x loop
+    const middleIndex = experiences.length;
 
     useEffect(() => {
-        // Scroll to the middle copy on load
         if (scrollRef.current) {
-            scrollRef.current.scrollLeft = startIndex * CARD_WIDTH;
+            scrollRef.current.scrollLeft = middleIndex * CARD_WIDTH;
         }
     }, []);
 
     const scroll = (direction: "left" | "right") => {
-        if (!scrollRef.current) return;
         const container = scrollRef.current;
+        if (!container) return;
 
         const scrollAmount = direction === "left" ? -CARD_WIDTH : CARD_WIDTH;
         container.scrollBy({ left: scrollAmount, behavior: "smooth" });
 
         setTimeout(() => {
-            const max = experiences.length * CARD_WIDTH * 2;
-            const min = 0;
-            const current = container.scrollLeft;
+            const totalWidth = experiences.length * CARD_WIDTH;
+            const currentScroll = container.scrollLeft;
 
-            // If scrolled too far right, reset to center
-            if (current >= max) {
-                container.scrollLeft = startIndex * CARD_WIDTH;
+            if (currentScroll <= 0) {
+                container.scrollLeft = totalWidth;
             }
-
-            // If scrolled too far left, reset to center
-            if (current <= min) {
-                container.scrollLeft = startIndex * CARD_WIDTH;
+            if (currentScroll >= totalWidth * 2) {
+                container.scrollLeft = totalWidth;
             }
-        }, 500); // Wait for smooth scroll to finish
+        }, 500);
     };
 
     return (
-        <section className="bg-[#2D2F36] text-white py-16 px-6 md:px-20">
+        <section className="text-white py-12">
             {/* Title & Arrows */}
-            <div className="flex justify-between items-center mb-10">
-                <div>
-                    <h2 className="text-5xl font-bold">Experience</h2>
-                    <p className="text-teal-400 font-semibold mt-2 uppercase tracking-widest">
-                        Working with
-                    </p>
+            <div className="flex flex-row items-center justify-between w-[92%]">
+                <div className="text-[42px] md:text-[55px] text-white font-bold font-montserrat">
+                    Experience
                 </div>
-                <div className="flex gap-4">
+                <div className="flex space-x-3 text-center">
                     <button
-                        className="w-12 h-12 border border-white rounded-full flex items-center justify-center"
                         onClick={() => scroll("left")}
+                        aria-label="Scroll Left"
+                        className="bg-[#373b40] px-[22px] text-white rounded-full border border-[#414852] text-[14px] w-[64px] h-[64px] mr-[15px]"
                     >
-                        <ChevronLeft />
+                        <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
-                        className="w-12 h-12 border border-white rounded-full flex items-center justify-center"
                         onClick={() => scroll("right")}
+                        aria-label="Scroll Right"
+                        className="text-white px-[22px] rounded-full bg-[#373b40] border border-[#414852] text-[14px] w-[64px] h-[64px]"
                     >
-                        <ChevronRight />
+                        <ChevronRight className="w-4 h-4" />
                     </button>
                 </div>
             </div>
 
+            <div className="subtitle text-[14px] text-[#68e0cf] font-bold font-poppins">WORKING WITH</div>
+
             {/* Scrollable Cards */}
-            <div
-                ref={scrollRef}
-                className="flex gap-8 overflow-x-auto scroll-smooth scrollbar-hide"
-                style={{ scrollSnapType: "x mandatory" }}
-            >
-                {extendedPlans.map((item, idx) => (
-                    <div
-                        key={idx}
-                        className="min-w-[321px] scroll-snap-start flex-shrink-0"
-                    >
-                        <p className="text-teal-400 text-sm mb-2 tracking-widest">
-                            {item.period}
-                        </p>
-                        <h3 className="text-xl font-bold whitespace-pre-line">
-                            {item.title}
-                        </h3>
-                        <p className="text-gray-300 mt-4 leading-relaxed">
-                            {item.description}
-                        </p>
-                    </div>
-                ))}
+            <div className="overflow-hidden w-full">
+                <div
+                    ref={scrollRef}
+                    className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-4"
+                    style={{ scrollSnapType: "x mandatory" }}
+                >
+                    {extendedExperiences.map((item, idx) => (
+                        <div
+                            key={idx}
+                            className="scroll-snap-start  p-6 rounded-lg w-[320px] flex-shrink-0"
+                        >
+                            <p className="text-teal-400 font-bold text-sm mb-2 tracking-widest break-words">
+                                {item.period}
+                            </p>
+                            <h3 className="text-xl font-bold mb-2 break-words">
+                                {item.title}
+                            </h3>
+                            <p className="text-gray-300 leading-relaxed break-words whitespace-pre-wrap">
+                                {item.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );

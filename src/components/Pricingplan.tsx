@@ -60,14 +60,12 @@ const pricingPlans: PricingPlan[] = [
     },
 ];
 
-const CARD_WIDTH = 321; // 297 + gap
-
-
+const CARD_WIDTH = 321; 
 export default function Pricing() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const extendedPlans = [...pricingPlans, ...pricingPlans, ...pricingPlans]; // 3x copy
-    const startIndex = pricingPlans.length; // middle copy index
+    const startIndex = pricingPlans.length; 
 
     useEffect(() => {
         // Scroll to the middle copy on load
@@ -88,7 +86,6 @@ export default function Pricing() {
             const min = 0;
             const current = container.scrollLeft;
 
-            // If scrolled too far right, reset to center
             if (current >= max) {
                 container.scrollLeft = startIndex * CARD_WIDTH;
             }
@@ -101,8 +98,8 @@ export default function Pricing() {
     };
 
     return (
-        <section className="text-white py-12">
-            <div className="flex flex-row items-center justify-between mb-6 w-[92%]">
+        <section className="text-white ">
+            <div className="flex flex-row items-center justify-between w-[92%]">
                 <div className="text-[42px] md:text-[55px] text-white font-bold font-montserrat">
                     Pricing
                 </div>

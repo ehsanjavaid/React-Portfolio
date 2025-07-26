@@ -167,7 +167,7 @@ const HeroText: React.FC = () => {
             {/* Pricing */}
             <Pricingplan />
             {/* line 4 */}
-            <div className="w-full flex justify-center pt-[70px]">
+            <div className="w-full flex justify-center">
                 <hr className="my-10 w-[100%] border-t border-gray-600" />
             </div>
             {/* <!-- Experience Section --> */}
