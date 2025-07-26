@@ -62,6 +62,7 @@ const pricingPlans: PricingPlan[] = [
 
 const CARD_WIDTH = 321; // 297 + gap
 
+
 export default function Pricing() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
