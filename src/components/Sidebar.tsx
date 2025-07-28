@@ -3,8 +3,9 @@ import { ChevronRight, Globe, FolderCode, Boxes, Settings } from 'lucide-react';
 import Pricingplan from "./Pricingplan";
 import Experience from "./Experience";
 import Education from "./Education";
-import Skills from "./Skills";
+import CoddingSkills from "./CoddingSkills";
 import LanguageSkills from "./LanguageSkills";
+import DesignSkills from "./DesignSkills";
 
 const HeroText: React.FC = () => {
     const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE DEVELOPER'];
@@ -185,14 +186,20 @@ const HeroText: React.FC = () => {
             <div className="w-full flex justify-center">
                 <hr className="my-10 w-[100%] border-t border-gray-600" />
             </div>
-            {/* <!-- Skills Section --> */}
-            <Skills />
+            {/* <!-- Design Skills Section --> */}
+            <DesignSkills />
             {/* line 7 */}
             <div className="w-full flex justify-center">
                 <hr className="my-10 w-[100%] border-t border-gray-600" />
             </div>
-            {/* <!-- Skills Section --> */}
+            {/* <!-- Language Skills Section --> */}
             <LanguageSkills />
+            {/* line 8 */}
+            <div className="w-full flex justify-center">
+                <hr className="my-10 w-[100%] border-t border-gray-600" />
+            </div>
+            {/* <!--  Codding Skills Section --> */}
+            <CoddingSkills />
         </div>
     );
 };

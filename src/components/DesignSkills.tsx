@@ -7,23 +7,23 @@ interface Skill {
 
 const skills: Skill[] = [
   {
-    title:  "Frappe & ERPNext Development",
-    description: "Core backend framework for custom apps, workflows, REST APIs, and advanced integrations.",
+    title:  "AutoCAD ",
+    description: "Expertise in creating detailed architectural and engineering designs, and also car designing, like windscreen.",
     percentage: 90,
   },
   {
-    title: "React + Vue.js (Frontend Development)",
-    description: "Modern UI development with Tailwind, GSAP animations, and component-based design.",
+    title: "CoralDRAW",
+    description: "Proficient in vector graphics design, including logo creation and branding materials.",
     percentage: 70,
   },
   {
-    title: " API Development & Integration",
-    description: " REST APIs, WhatsApp integration, biometric devices, third-party system connections.",
+    title: "Canva",
+    description: " Skilled in creating visually appealing graphics and presentations for various platforms.",
     percentage: 95,
   },
   {
-    title: "Graphic Design",
-    description: "Proficient in AutoCAD, CorelDRAW, Canva, and Figma for UI/UX design and creative prototyping.",
+    title: "Figma",
+    description: "Experienced in UI/UX design, creating interactive prototypes for web and mobile applications.",
     percentage: 85,
   },
 ];
@@ -33,7 +33,7 @@ export default function DesignSkills() {
     <section className=" text-white font-poppins py-12">
       {/* Section Title */}
       <div className="mb-10">
-        <h2 className="text-5xl font-bold">Skills</h2>
+        <h2 className="text-5xl font-bold">Design Skills</h2>
         <p className="text-teal-400 font-semibold mt-2 uppercase tracking-widest">
           Creative Ability
         </p>
