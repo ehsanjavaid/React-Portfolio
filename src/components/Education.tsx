@@ -68,7 +68,7 @@ export default function EducationSection() {
     };
 
     return (
-        <section className="text-white py-12">
+        <section className="text-white py-12 font-poppins">
             {/* Title & Arrows */}
             <div className="flex flex-row items-center justify-between w-[92%]">
                 <div className="text-[42px] md:text-[55px] text-white font-bold font-montserrat">
