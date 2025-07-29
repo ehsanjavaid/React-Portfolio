@@ -27,11 +27,17 @@ export default function CodingSkills() {
             <div
               className="relative w-24 h-24 rounded-full flex items-center justify-center"
               style={{
-                background: `conic-gradient(#38E0C4 ${skill.level * 3.6}deg, #3a3a3a ${skill.level * 3.6}deg)`,
+                background: `conic-gradient(#38E0C4 ${skill.level * 3.6}deg, transparent ${skill.level * 3.6}deg)`,
+                border: "6px solid #3a3a3a", // Dark outer ring
+                borderRadius: "50%",
               }}
             >
-              <span className="absolute text-lg font-bold">{skill.level}%</span>
+              {/* Inner Circle (Dark background) */}
+              <div className="absolute w-20 h-20 bg-[#373b40] rounded-full flex items-center justify-center">
+                <span className="text-sm font-bold text-teal-400">{skill.level}%</span>
+              </div>
             </div>
+
 
             {/* Skill Name */}
             <h3 className="text-lg font-bold mt-4">{skill.name}</h3>
