@@ -6,6 +6,8 @@ import Education from "./Education";
 import CoddingSkills from "./CoddingSkills";
 import LanguageSkills from "./LanguageSkills";
 import DesignSkills from "./DesignSkills";
+// import Portfoliocards from "./portfoliocards";
+import Contactus from "./Contactus";
 
 const HeroText: React.FC = () => {
     const texts = ['ERPNEXT DEVELOPER', 'FULL STACK DEVELOPER', 'SOFTWARE DEVELOPER'];
@@ -200,6 +202,18 @@ const HeroText: React.FC = () => {
             </div>
             {/* <!--  Codding Skills Section --> */}
             <CoddingSkills />
+            {/* line 9 */}
+            {/* <div className="w-full flex justify-center">
+                <hr className="my-10 w-[100%] border-t border-gray-600" />
+            </div> */}
+            {/* <!--  Portfolio Section --> */}
+            {/* <Portfoliocards /> */}
+            {/* line 10 */}
+            <div className="w-full flex justify-center">
+                <hr className="my-10 w-[100%] border-t border-gray-600" />
+            </div>
+            {/* <!--  Portfolio Section --> */}
+            <Contactus />
         </div>
     );
 };
